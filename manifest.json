@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "视频转转",
+  "description": "旋转网页中的主视频，针对哔哩哔哩播放器优化。",
+  "version": "1.0.0",
+  "minimum_chrome_version": "102",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.bilibili.com/*",
+    "*://bilibili.com/*"
+  ],
+  "action": {
+    "default_title": "旋转视频",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.bilibili.com/*",
+        "*://bilibili.com/*"
+      ],
+      "css": ["content.css"],
+      "js": ["src/core.js", "src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "rotate-clockwise": {
+      "suggested_key": {
+        "default": "Alt+Shift+R"
+      },
+      "description": "顺时针旋转视频 90 度"
+    },
+    "rotate-counterclockwise": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "逆时针旋转视频 90 度"
+    },
+    "reset-rotation": {
+      "description": "恢复视频方向"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

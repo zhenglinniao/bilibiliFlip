@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>视频转转商店截图</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body { font-family: Inter, "Microsoft YaHei", system-ui, sans-serif; color: #f7f8fa; background: #0f1013; }
+    .screen { display: none; position: relative; width: 1280px; height: 800px; overflow: hidden; background: radial-gradient(circle at 80% 10%, rgba(251,114,153,.2), transparent 34%), linear-gradient(145deg, #16171c, #0c0d10); }
+    .screen.active { display: block; }
+    .brand { position: absolute; top: 46px; left: 62px; display: flex; align-items: center; gap: 14px; font-size: 21px; font-weight: 760; }
+    .logo { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(145deg,#fb7299,#df4674); box-shadow: 0 12px 35px rgba(251,114,153,.28); font-size: 28px; }
+    .copy { position: absolute; left: 64px; top: 190px; width: 410px; }
+    .eyebrow { color: #fb7299; font-size: 14px; font-weight: 750; letter-spacing: .14em; }
+    h1 { margin: 14px 0 18px; font-size: 55px; line-height: 1.12; letter-spacing: -.04em; }
+    .copy p { margin: 0; color: #a8abb4; font-size: 18px; line-height: 1.75; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
+    .chip { padding: 8px 12px; border: 1px solid #353841; border-radius: 999px; color: #cfd1d7; background: rgba(255,255,255,.035); font-size: 13px; }
+    .browser { position: absolute; top: 88px; right: 55px; width: 690px; height: 620px; border: 1px solid #30323a; border-radius: 22px; overflow: hidden; background: #1b1d22; box-shadow: 0 38px 90px rgba(0,0,0,.44); }
+    .browserbar { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px; border-bottom: 1px solid #2d3037; background: #22242a; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #555963; }
+    .url { width: 395px; height: 26px; margin-left: 10px; border-radius: 7px; background: #17181c; }
+    .videoarea { position: relative; display: grid; height: 572px; place-items: center; overflow: hidden; background: #08090b; }
+    .video { position: relative; width: 560px; height: 315px; overflow: hidden; border-radius: 8px; background: linear-gradient(145deg,#27334d,#111827); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    .video::before { content:""; position:absolute; inset:0; background: radial-gradient(circle at 70% 28%, #ffbd80 0 4%, transparent 5%), linear-gradient(160deg, transparent 48%, #1f775f 49% 66%, #123d36 67%); opacity:.9; }
+    .video::after { content:""; position:absolute; left:0; right:0; bottom:0; height:4px; background:linear-gradient(90deg,#fb7299 0 42%,#50535d 42%); }
+    .popup { position: absolute; top: 76px; right: 20px; width: 300px; padding: 17px; border: 1px solid #353740; border-radius: 16px; background: rgba(18,19,22,.97); box-shadow: 0 24px 70px rgba(0,0,0,.55); }
+    .phead { display:flex; align-items:center; gap:10px; }
+    .pmark { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:#fb7299; font-size:22px; }
+    .ptitle { font-size:15px; font-weight:750; }
+    .pstatus { margin-top:2px; color:#70d49b; font-size:10px; }
+    .sect { display:flex; justify-content:space-between; margin-top:17px; color:#969aa4; font-size:10px; }
+    .sect strong { color:#fb7299; }
+    .angles { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:7px; }
+    .angles span { padding:9px 0; border:1px solid #33353d; border-radius:8px; color:#cfd1d7; text-align:center; font-size:11px; }
+    .angles .on { border-color:#fb7299; color:#fff; background:rgba(251,114,153,.18); }
+    .turns { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-top:8px; }
+    .turns span { padding:8px; border:1px solid #30323a; border-radius:8px; color:#aeb1ba; text-align:center; font-size:10px; }
+    .remember { display:flex; justify-content:space-between; align-items:center; margin-top:15px; padding-top:13px; border-top:1px solid #2b2d33; font-size:10px; }
+    .toggle { width:32px; height:18px; padding:3px; border-radius:99px; background:#fb7299; }
+    .toggle::after { content:""; display:block; width:12px; height:12px; margin-left:14px; border-radius:50%; background:#fff; }
+    .footer-note { position:absolute; left:64px; bottom:44px; color:#696d77; font-size:12px; }
+
+    .s2 h1, .s3 h1 { width: 100%; margin-top: 0; text-align: center; font-size: 46px; }
+    .s2 .lead, .s3 .lead { position:absolute; top:196px; left:0; width:100%; color:#9da1aa; text-align:center; font-size:17px; }
+    .cards { position:absolute; top:235px; left:64px; display:grid; grid-template-columns:repeat(4,1fr); gap:18px; width:1152px; }
+    .card { height:390px; padding:18px; border:1px solid #30323a; border-radius:20px; background:linear-gradient(160deg,#202228,#16171b); box-shadow:0 22px 55px rgba(0,0,0,.25); }
+    .cardhead { display:flex; justify-content:space-between; align-items:center; }
+    .degree { font-size:28px; font-weight:800; }
+    .tag { padding:5px 9px; border-radius:999px; color:#fb7299; background:rgba(251,114,153,.12); font-size:10px; }
+    .stage { display:grid; height:280px; margin-top:20px; place-items:center; overflow:hidden; border-radius:12px; background:#090a0c; }
+    .frame { position:relative; width:220px; height:124px; overflow:hidden; border-radius:5px; background:linear-gradient(150deg,#27334d,#101827); }
+    .frame::before { content:""; position:absolute; inset:0; background:linear-gradient(155deg,transparent 48%,#21836a 49% 65%,#16483d 66%); }
+    .r90 { transform:rotate(90deg) scale(.56); }
+    .r180 { transform:rotate(180deg); }
+    .r270 { transform:rotate(270deg) scale(.56); }
+    .caption { margin-top:14px; color:#858993; text-align:center; font-size:12px; }
+
+    .feature-grid { position:absolute; top:230px; left:86px; display:grid; grid-template-columns:1fr 1fr; gap:22px; width:1108px; }
+    .feature { position:relative; min-height:190px; padding:29px 30px 26px 92px; border:1px solid #30323a; border-radius:20px; background:rgba(31,33,39,.85); }
+    .ficon { position:absolute; top:27px; left:28px; display:grid; width:46px; height:46px; place-items:center; border-radius:14px; color:#fb7299; background:rgba(251,114,153,.12); font-size:23px; }
+    .feature h2 { margin:0 0 10px; font-size:19px; }
+    .feature p { margin:0; color:#8f939d; font-size:14px; line-height:1.65; }
+    .shortcut { display:inline-block; margin-top:14px; padding:7px 10px; border:1px solid #41444d; border-bottom-width:3px; border-radius:8px; color:#dadce2; background:#25272d; font:600 12px ui-monospace,monospace; }
+  </style>
+</head>
+<body>
+  <section class="screen s1" data-screen="1">
+    <div class="brand"><div class="logo">↻</div>视频转转</div>
+    <div class="copy">
+      <div class="eyebrow">网页视频方向工具</div>
+      <h1>方向不对，<br>一键转正。</h1>
+      <p>直接旋转当前网页里的主视频。无需下载，无需转码，控制栏始终保持正常方向。</p>
+      <div class="chips"><span class="chip">B站优化</span><span class="chip">全屏兼容</span><span class="chip">本地处理</span></div>
+    </div>
+    <div class="browser">
+      <div class="browserbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url"></div></div>
+      <div class="videoarea"><div class="video r90"></div></div>
+      <div class="popup">
+        <div class="phead"><div class="pmark">↻</div><div><div class="ptitle">视频转转</div><div class="pstatus">已连接当前视频</div></div></div>
+        <div class="sect"><span>选择方向</span><strong>90°</strong></div>
+        <div class="angles"><span>0°</span><span class="on">90°</span><span>180°</span><span>270°</span></div>
+        <div class="turns"><span>↶ 逆时针</span><span>顺时针 ↷</span></div>
+        <div class="remember"><span>记住上次角度</span><i class="toggle"></i></div>
+      </div>
+    </div>
+    <div class="footer-note">所有旋转都在浏览器本地完成 · 不上传视频内容</div>
+  </section>
+
+  <section class="screen s2" data-screen="2">
+    <div class="brand"><div class="logo">↻</div>视频转转</div>
+    <h1 style="position:absolute;top:128px">四种角度，随心切换</h1>
+    <div class="lead">90° 与 270° 自动缩放，在播放器范围内完整呈现画面</div>
+    <div class="cards">
+      <div class="card"><div class="cardhead"><span class="degree">0°</span><span class="tag">原方向</span></div><div class="stage"><div class="frame"></div></div><div class="caption">恢复原始方向</div></div>
+      <div class="card"><div class="cardhead"><span class="degree">90°</span><span class="tag">顺时针</span></div><div class="stage"><div class="frame r90"></div></div><div class="caption">自动适配高度</div></div>
+      <div class="card"><div class="cardhead"><span class="degree">180°</span><span class="tag">倒转</span></div><div class="stage"><div class="frame r180"></div></div><div class="caption">画面上下翻转</div></div>
+      <div class="card"><div class="cardhead"><span class="degree">270°</span><span class="tag">逆时针</span></div><div class="stage"><div class="frame r270"></div></div><div class="caption">自动适配高度</div></div>
+    </div>
+  </section>
+
+  <section class="screen s3" data-screen="3">
+    <div class="brand"><div class="logo">↻</div>视频转转</div>
+    <h1 style="position:absolute;top:125px">轻量、顺手、尊重隐私</h1>
+    <div class="lead">只做视频旋转这一件事，没有账号、广告、遥测或远程代码</div>
+    <div class="feature-grid">
+      <article class="feature"><div class="ficon">⌨</div><h2>快捷键随时旋转</h2><p>无需离开播放器即可逐次旋转，也能在 Edge 扩展快捷键页面重新绑定。</p><span class="shortcut">Alt + Shift + R</span></article>
+      <article class="feature"><div class="ficon">⛶</div><h2>全屏状态同样可用</h2><p>监听播放器尺寸和全屏变化，在普通播放、网页全屏及浏览器全屏中保持方向。</p></article>
+      <article class="feature"><div class="ficon">◎</div><h2>自动跟随动态播放器</h2><p>针对哔哩哔哩单页导航和切集优化，播放器重新创建后仍会找到主视频。</p></article>
+      <article class="feature"><div class="ficon">◇</div><h2>数据留在你的设备</h2><p>不读取或上传视频流，不收集浏览记录；只在本地保存旋转角度偏好。</p></article>
+    </div>
+  </section>
+  <script>
+    const screen = new URLSearchParams(location.search).get("screen") || "1";
+    document.querySelector(`[data-screen="${screen}"]`)?.classList.add("active");
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+video.vzz-rotated-video {
+  transform: rotate(var(--vzz-angle, 0deg)) scale(var(--vzz-scale, 1)) !important;
+  transform-origin: center center !important;
+  will-change: transform;
+}
+
+.vzz-toast {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  z-index: 2147483647;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(20, 21, 24, 0.9);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  font: 500 13px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.vzz-toast.vzz-toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(4px);
+}
