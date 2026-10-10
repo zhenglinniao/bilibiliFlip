@@ -17,15 +17,71 @@
 
 推荐从 Microsoft Edge 加载项商店安装；如果暂时无法使用商店，也可以下载本仓库并手动安装。
 
-手动安装的关键步骤如下：
+### Microsoft Edge 手动安装图文教程
+
+#### 1. 下载并解压扩展
+
+下载 [`dist/bilibili-video-rotate-edge-v1.0.1.zip`](dist/bilibili-video-rotate-edge-v1.0.1.zip)，然后右键压缩包选择“全部解压”。浏览器不能直接安装 `.zip` 文件。
+
+建议把解压后的文件夹放在“文档”等不会被系统自动清理的位置。安装后不要移动或删除这个文件夹。
+
+#### 2. 打开扩展管理页
+
+在 Edge 地址栏输入 `edge://extensions/` 并按回车，然后打开左下角的“开发人员模式”，点击页面上方的“加载解压缩的扩展”。
+
+![开启开发人员模式并点击加载解压缩的扩展](docs/images/manual-install-01-enable-developer-mode.png)
+
+#### 3. 选择扩展文件夹
+
+在弹出的文件夹选择窗口中，选择刚才解压得到的文件夹，然后点击“选择文件夹”。所选文件夹第一层必须直接包含 `manifest.json`。
+
+![选择解压后的扩展文件夹](docs/images/manual-install-02-select-folder.png)
+
+正确的目录结构类似：
+
+```text
+bilibili-video-rotate\
+├─ manifest.json
+├─ background.js
+├─ content.css
+├─ icons\
+├─ popup\
+└─ src\
+```
+
+如果提示“清单文件缺失或不可读取”，通常是选中了外层文件夹，请再进入一层并选择直接包含 `manifest.json` 的目录。
+
+#### 4. 确认扩展已经启用
+
+安装成功后，扩展列表中会出现“B站视频旋转”。确认右上角开关为绿色开启状态。
+
+![确认 B站视频旋转 已安装并启用](docs/images/manual-install-03-enable-extension.png)
+
+#### 5. 找到并固定扩展
+
+点击 Edge 工具栏右上角的拼图图标，在扩展列表中找到“B站视频旋转”。可以点击名称打开扩展，也可以点击右侧的图钉按钮将它固定到工具栏。
+
+![在 Edge 扩展菜单中找到 B站视频旋转](docs/images/manual-install-04-open-extension-menu.png)
+
+#### 6. 打开视频页面后使用
+
+先打开一个哔哩哔哩视频页面，等待播放器加载完成，再点击“B站视频旋转”图标并选择 `0°`、`90°`、`180°` 或 `270°`。
+
+如果在 `edge://extensions/`、Edge 加载项商店或其他浏览器内部页面点击扩展，会看到“此页面不允许扩展运行”，这是浏览器的正常安全限制，不代表安装失败。切换到普通视频网页即可使用。
+
+![在 Edge 内部页面使用扩展时的正常限制提示](docs/images/manual-install-05-restricted-page.png)
+
+### Google Chrome 手动安装
+
+Chrome 的操作基本相同：
 
 1. 下载项目压缩包并解压，不能直接选择 `.zip` 文件。
-2. 在 Edge 打开 `edge://extensions/`，或在 Chrome 打开 `chrome://extensions/`。
-3. 开启“开发人员模式/开发者模式”。
-4. 点击“加载解压缩的扩展/加载已解压的扩展程序”。
+2. 在 Chrome 打开 `chrome://extensions/`。
+3. 开启右上角的“开发者模式”。
+4. 点击“加载已解压的扩展程序”。
 5. 选择解压后**直接包含 `manifest.json`** 的文件夹。
 
-完整的图文操作要点、更新方法、使用方法和故障排查请阅读：
+更新方法、快捷键、卸载步骤和更多故障排查请阅读：
 
 **[手动安装与使用教程](docs/manual-install.md)**
 
