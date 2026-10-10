@@ -3,7 +3,8 @@ param()
 $ErrorActionPreference = "Stop"
 $projectRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 $distDirectory = Join-Path $projectRoot "dist"
-$packagePath = Join-Path $distDirectory "video-zhuan-zhuan-edge-v1.0.0.zip"
+$manifest = Get-Content -Raw -Encoding UTF8 (Join-Path $projectRoot "manifest.json") | ConvertFrom-Json
+$packagePath = Join-Path $distDirectory "bilibili-video-rotate-edge-v$($manifest.version).zip"
 
 New-Item -ItemType Directory -Force -Path $distDirectory | Out-Null
 if (Test-Path -LiteralPath $packagePath) {

@@ -24,7 +24,7 @@
 - [ ] 如填写隐私政策 URL，将 `privacy-policy.html` 发布到公开 HTTPS 地址
 - [ ] 上传 `assets/logo-300.png`
 - [ ] 上传 `assets/screenshot-01.png`、`screenshot-02.png`、`screenshot-03.png`
-- [ ] 上传 `../dist/video-zhuan-zhuan-edge-v1.0.0.zip`
+- [ ] 上传 `../dist/bilibili-video-rotate-edge-v1.0.1.zip`
 - [ ] 按 `partner-center-fields-zh-CN.md` 填写权限和数据声明
 - [ ] 粘贴 `certification-notes-zh-CN.md` 中的审核说明
 - [ ] 提交审核
@@ -33,7 +33,7 @@
 
 | Partner Center 项目 | 文件 |
 |---|---|
-| 扩展包 | `dist/video-zhuan-zhuan-edge-v1.0.0.zip` |
+| 扩展包 | `dist/bilibili-video-rotate-edge-v1.0.1.zip` |
 | 扩展 Logo | `store/assets/logo-300.png` |
 | 商店截图 | `store/assets/screenshot-01.png` 等 |
 | 商店介绍 | `store/listing-zh-CN.md` |

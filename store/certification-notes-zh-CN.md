@@ -10,7 +10,7 @@
 
 1. 在 Microsoft Edge 中安装扩展。
 2. 打开任意哔哩哔哩公开视频页面并开始播放。
-3. 点击工具栏中的“视频转转”图标。
+3. 点击工具栏中的“B站视频旋转”图标。
 4. 分别点击 90°、180°、270° 和 0°，确认视频画面改变方向，播放器控制栏和网页布局不旋转。
 5. 点击“顺时针”和“逆时针”，确认每次旋转 90°。
 6. 进入网页全屏或浏览器全屏，确认旋转保持有效。
@@ -27,7 +27,7 @@ Suggested test steps:
 
 1. Install the extension in Microsoft Edge.
 2. Open any publicly accessible Bilibili video and start playback.
-3. Click the “视频转转” toolbar icon.
+3. Click the “B站视频旋转” toolbar icon.
 4. Select 90°, 180°, 270°, and 0°. Verify that only the video image rotates while the player controls and page layout remain upright.
 5. Test the clockwise and counterclockwise buttons; each action rotates the video by 90°.
 6. Enter web fullscreen or browser fullscreen and verify that rotation remains active.

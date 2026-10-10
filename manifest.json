@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "视频转转",
+  "name": "B站视频旋转",
   "description": "旋转网页中的主视频，针对哔哩哔哩播放器优化。",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minimum_chrome_version": "102",
   "permissions": [
     "activeTab",
@@ -14,7 +14,7 @@
     "*://bilibili.com/*"
   ],
   "action": {
-    "default_title": "旋转视频",
+    "default_title": "B站视频旋转",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon-16.png",
